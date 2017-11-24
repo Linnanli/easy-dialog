@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>simple dialog</title>
-    <script src="./src/js/dialog.js"></script>
-    <link rel="stylesheet" href="./src/style/dialog.css">
+    <script src="./dist/js/dialog.js"></script>
+    <link rel="stylesheet" href="./dist/style/dialog.css">
 </head>
 <body>
     <button id="confirm">弹出confirm</button>
@@ -21,7 +21,7 @@
     confirm.onclick = function () {
         dialog.confirm({
             title: '消息',
-            message: '确定删除网关562555:云南省昆明市盘龙区X003(龙欣路)吗?',
+            message: '确定删除网关562555:云南省昆明市盘龙区(龙欣路)吗?',
             confirm: function (e) {
                 this.confirm({
                     title: '消息',
@@ -39,11 +39,11 @@
             confirm:function(val){
                 console.log(val);
                 if(val === 'delete'){
-                    dialog.toast({
+                    this.toast({
                         message:'删除成功!'
                     });
                 }else{
-                    dialog.toast({
+                    this.toast({
                         message:'welcome '+val
                     });
                 }
