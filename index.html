@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>simple dialog</title>
+    <script src="./src/js/dialog.js"></script>
+    <link rel="stylesheet" href="./src/style/dialog.css">
+</head>
+<body>
+    <button id="confirm">弹出confirm</button>
+    <button id="prompt">弹出prompt</button>
+    <button id="toast">弹出toast</button>
+</body>
+<script>
+    var confirm = document.getElementById('confirm');
+    var prompt = document.getElementById('prompt');
+    var toast = document.getElementById('toast');
+    confirm.onclick = function () {
+        dialog.confirm({
+            title: '消息',
+            message: '确定删除网关562555:云南省昆明市盘龙区X003(龙欣路)吗?',
+            confirm: function (e) {
+                this.confirm({
+                    title: '消息',
+                    message: 'message test2'
+                });
+            }
+        });
+    }
+
+    prompt.onclick = function () {
+        dialog.prompt({
+            title:'输入框',
+            message: '请输入你的名字:',
+            placeholder:'如:林楠力',
+            confirm:function(val){
+                console.log(val);
+                if(val === 'delete'){
+                    dialog.toast({
+                        message:'删除成功!'
+                    });
+                }else{
+                    dialog.toast({
+                        message:'welcome '+val
+                    });
+                }
+            },
+            cancel:function(val){
+                console.log(val);
+            }
+        });
+    }
+
+    toast.onclick = function(){
+        dialog.toast({
+            message:'删除成功!',
+            timeout:100
+        });
+    }
+
+</script>
+
+</html>
