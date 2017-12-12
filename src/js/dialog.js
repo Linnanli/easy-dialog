@@ -27,7 +27,7 @@
         PROMPT_INPUT = 'ui-prompt-input',
         PROMPT_MESSAGE = 'ui-prompt-message',
         TOAST_BOX = 'ui-toast';
-        
+
 
     //dialog 对象
     var dialog = {
@@ -78,22 +78,22 @@
             this.$confirmFoot.appendChild(this.$confirmConfirm);
 
             //绑定隐藏事件,阻止冒泡
-            this.$element.addEventListener('dblclick',function(e){
+            this.$element.addEventListener('dblclick', function (e) {
                 _this.$hidden();
                 e.stopPropagation();
             });
             //阻止点击子级冒泡触发父级隐藏事件
-            this.$confirmBox.addEventListener('dblclick',function(e){
+            this.$confirmBox.addEventListener('dblclick', function (e) {
                 e.stopPropagation();
             });
             //阻止document click事件
-            this.$element.addEventListener('click',function(e){
+            this.$element.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
 
             document.body.appendChild(this.$element);
         },
-        $hidden:function(){
+        $hidden: function () {
             //隐藏弹框
             util._removeClass(this.$element, DIALOG_SHOW);
         },
@@ -110,6 +110,7 @@
         //confirm按钮绑定事件
         $confirmBindEvent: function (callback) {
             var _this = this;
+            this.$confirmConfirm.focus();
             this.$confirmConfirm.onclick = function () {
                 if (typeof callback === 'function') {
                     if (callback.call(dialog) === false) return;
@@ -126,6 +127,16 @@
                     if (callback.call(dialog) === false) return;
                 }
                 _this.$hidden();
+            }
+
+            //点击确认按钮时触发confirm事件
+            document.body.addEventListener('keyup', _keyEsc);
+            function _keyEsc(e) {
+                if (e.keyCode === 27) {
+                    _this.$hidden();
+                    document.body.removeEventListener('keyup', _keyEsc);
+                }
+                e.preventDefault();
             }
             return this;
         }
@@ -186,22 +197,21 @@
             this.$promptFoot.appendChild(this.$promptConfirm);
 
             //绑定隐藏事件,阻止冒泡
-            this.$element.addEventListener('dblclick',function(e){
+            this.$element.addEventListener('dblclick', function (e) {
                 _this.$hidden();
                 e.stopPropagation();
             });
             //阻止点击子级冒泡触发父级隐藏事件
-            this.$promptBox.addEventListener('dblclick',function(e){
+            this.$promptBox.addEventListener('dblclick', function (e) {
                 e.stopPropagation();
             });
             //阻止document click事件
-            this.$element.addEventListener('click',function(e){
+            this.$element.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
-
             document.body.appendChild(this.$element);
         },
-        $hidden:function(){
+        $hidden: function () {
             //隐藏弹框
             util._removeClass(this.$element, DIALOG_SHOW);
         },
@@ -223,6 +233,7 @@
         //confirm按钮绑定事件
         $confirmBindEvent: function (callback) {
             var _this = this;
+            //点击确认按钮时触发confirm事件
             this.$promptConfirm.onclick = function () {
                 if (typeof callback === 'function') {
                     if (callback.call(dialog, _this.$promptInput.value) === false) return;
@@ -240,6 +251,15 @@
                 }
                 _this.$hidden();
             }
+            //点击确认按钮时触发confirm事件
+            document.body.addEventListener('keyup', _keyEsc);
+            function _keyEsc(e) {
+                if (e.keyCode === 27) {
+                    _this.$hidden();
+                    document.body.removeEventListener('keyup', _keyEsc);
+                }
+                e.preventDefault();
+            }
             return this;
         }
     };
@@ -247,7 +267,7 @@
     var toast = {
         id: 'dialog-toast',
         $element: null,
-        timeout:1500,
+        timeout: 1500,
         $build: function () {
             //创建遮罩
             this.$element = util._createElement('div', DIALOG_MASK);
@@ -262,14 +282,15 @@
                 this.$build();
             if (!params.message) return;
             var _this = this;
+            var timer = null;
             this.$toastBox.innerText = params.message;
             //显示toast
             util._addClass(this.$element, DIALOG_SHOW);
-            this.$init._time = setTimeout(function(){
+            timer = setTimeout(function () {
                 //隐藏toast
                 util._removeClass(_this.$element, DIALOG_SHOW);
-                clearTimeout(_this.$init._time);
-            },this.timeout>(params.timeout || 0)?this.timeout:params.timeout);
+                clearTimeout(timer);
+            }, this.timeout > (params.timeout || 0) ? this.timeout : params.timeout);
         }
     };
 
@@ -305,32 +326,45 @@
 
             return this;
         },
-        _onload:function(callback){
-            if(document.readyState === 'complete'){
+        _onload: function (callback) {
+            if (document.readyState === 'complete') {
                 callback();
-            }else{
-                window.addEventListener('load',function(){
+            } else {
+                window.addEventListener('load', function () {
                     callback();
                 });
             }
         }
     };
 
+    //解决IE下按下enter键,触发页面第一个button按钮的BUG
+    util._onload(function () {
+        if (navigator.appVersion.toUpperCase().indexOf('MSIE') === -1) return;
+
+        var compatibleEle = document.createElement('div');
+        var but = document.createElement('button');
+        but.innerText = 'compatible';
+        compatibleEle.appendChild(but);
+        compatibleEle.style.overflow = 'hidden';
+        compatibleEle.style.height = '0px';
+        document.body.insertBefore(compatibleEle, document.body.childNodes[0]);
+    });
+
     //绑定alert到dialog对象上
     dialog.confirm = function (params) {
-        util._onload(function(){
+        util._onload(function () {
             confirm.$init(params);
         });
     }
     //绑定alert到dialog对象上
     dialog.prompt = function (params) {
-        util._onload(function(){
+        util._onload(function () {
             prompt.$init(params);
         });
     }
     //绑定alert到dialog对象上
     dialog.toast = function (params) {
-        util._onload(function(){
+        util._onload(function () {
             toast.$init(params);
         });
     }
