@@ -23,6 +23,8 @@
         ALERT_FOOT = 'ui-alert-foot',
         ALERT_CANCEL_BUT = 'ui-alert-but ui-alert-cancel',
         ALERT_CONFIRM_BUT = 'ui-alert-but ui-alert-confirm',
+        ALERT_CANCEL_BUT_TEXT = '取消',
+        ALERT_CONFIRM_BUT_TEXT = '确定',
         PROMPT_CONTAIN = 'ui-prompt-contain',
         PROMPT_INPUT = 'ui-prompt-input',
         PROMPT_MESSAGE = 'ui-prompt-message',
@@ -45,6 +47,8 @@
             //设置title和message
             this.$setMessageText(params.message)
                 .$setTitleText(params.title)
+                .$setConfirmButText(params.confirmText)
+                .$setCancelButText(params.cancelText)
                 //确定按钮绑定事件
                 .$confirmBindEvent(params.confirm)
                 //取消按钮绑定事件
@@ -71,10 +75,10 @@
             this.$confirmFoot = util._createElement('div', ALERT_FOOT);
             this.$confirmBox.appendChild(this.$confirmFoot);
             //弹框尾部cancel按钮
-            this.$confirmCancel = util._createElement('button', ALERT_CANCEL_BUT, '取消');
+            this.$confirmCancel = util._createElement('button', ALERT_CANCEL_BUT, ALERT_CANCEL_BUT_TEXT);
             this.$confirmFoot.appendChild(this.$confirmCancel);
             //弹框尾部comfirm按钮
-            this.$confirmConfirm = util._createElement('button', ALERT_CONFIRM_BUT, '确定');
+            this.$confirmConfirm = util._createElement('button', ALERT_CONFIRM_BUT, ALERT_CONFIRM_BUT_TEXT);
             this.$confirmFoot.appendChild(this.$confirmConfirm);
 
             //绑定隐藏事件,阻止冒泡
@@ -107,6 +111,11 @@
             this.$confirmHead.innerText = text;
             return this;
         },
+        //设置确定按钮text
+        $setConfirmButText: function (text) {
+            this.$confirmConfirm.innerText = text ? text : ALERT_CONFIRM_BUT_TEXT;
+            return this;
+        },
         //confirm按钮绑定事件
         $confirmBindEvent: function (callback) {
             var _this = this;
@@ -117,6 +126,11 @@
                 }
                 _this.$hidden();
             }
+            return this;
+        },
+        //设置确定按钮text
+        $setCancelButText: function (text) {
+            this.$confirmCancel.innerText = text ? text : ALERT_CANCEL_BUT_TEXT;
             return this;
         },
         //cancel按钮绑定事件
@@ -154,6 +168,8 @@
             this.$setMessageText(params.message)
                 .$setPlaceholder(params.placeholder)
                 .$setTitleText(params.title)
+                .$setConfirmButText(params.confirmText)
+                .$setCancelButText(params.cancelText)
                 //确定按钮绑定事件
                 .$confirmBindEvent(params.confirm)
                 //取消按钮绑定事件
@@ -190,10 +206,10 @@
             this.$promptFoot = util._createElement('div', ALERT_FOOT);
             this.$promptBox.appendChild(this.$promptFoot);
             //弹框尾部cancel按钮
-            this.$promptCancel = util._createElement('button', ALERT_CANCEL_BUT, '取消');
+            this.$promptCancel = util._createElement('button', ALERT_CANCEL_BUT, ALERT_CANCEL_BUT_TEXT);
             this.$promptFoot.appendChild(this.$promptCancel);
             //弹框尾部comfirm按钮
-            this.$promptConfirm = util._createElement('button', ALERT_CONFIRM_BUT, '确定');
+            this.$promptConfirm = util._createElement('button', ALERT_CONFIRM_BUT, ALERT_CONFIRM_BUT_TEXT);
             this.$promptFoot.appendChild(this.$promptConfirm);
 
             //绑定隐藏事件,阻止冒泡
@@ -230,6 +246,11 @@
             this.$promptHead.innerText = text;
             return this;
         },
+        //设置确定按钮text
+        $setConfirmButText: function (text) {
+            this.$promptConfirm.innerText = text ? text : ALERT_CONFIRM_BUT_TEXT;
+            return this;
+        },
         //confirm按钮绑定事件
         $confirmBindEvent: function (callback) {
             var _this = this;
@@ -240,6 +261,11 @@
                 }
                 _this.$hidden();
             }
+            return this;
+        },
+        //设置确定按钮text
+        $setCancelButText: function (text) {
+            this.$promptCancel.innerText = text ? text : ALERT_CANCEL_BUT_TEXT;
             return this;
         },
         //cancel按钮绑定事件

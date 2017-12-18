@@ -39,6 +39,8 @@
 dialog.confirm({
     title:'消息',//必填
     message:'确认删除信息?',//必填
+    confirmText:'confirm',//设置confirm text,不必填
+    cancelText:'cancel',//设置cancel text,不必填
     confirm:function(){//确认按钮触发事件
         //this 指向 dialog对象
         console.log(this);
@@ -61,6 +63,8 @@ dialog.confirm({
 dialog.prompt({
     title:'输入框',//必填
     message:'请输入你的名字:',//必填
+    confirmText:'confirm',//设置confirm text,不必填
+    cancelText:'cancel',//设置cancel text,不必填
     placeholder:'如:林楠力',//文本框提示文字,IE9以上支持
     confirm:function(val){//确认按钮触发事件
         //返回用户文本框输入的字符串
