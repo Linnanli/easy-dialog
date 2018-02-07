@@ -1,0 +1,11 @@
+@import './variable.scss';
+
+// =========== 遮罩  =========== //
+@mixin mask($color:#000,$alpha:.5,$zindex:$base-zindex){
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background-color: rgba($color, $alpha);
+}
+
