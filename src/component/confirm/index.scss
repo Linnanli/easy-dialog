@@ -19,10 +19,14 @@
         &-head{
             padding: 14px 20px;
             border-bottom: 1px solid #e7e7e7;
+            font-size: 16px;
+            word-break: break-all;
         }
 
         &-body{
             padding: 10px 20px 15px 20px;
+            font-size: 14px;
+            color: #666;
         }
 
         &-footer{
