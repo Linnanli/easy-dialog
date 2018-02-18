@@ -1,3 +1,10 @@
+/*
+ * @Author: linnanli 
+ * @Date: 2018-02-19 00:29:19 
+ * @Last Modified by: linnanli
+ * @Last Modified time: 2018-02-19 00:29:44
+ * @Dscription: Confirm js文件 
+*/
 require('./index.scss');
 var tpl = require('./index.html');
 var util = require('util');
@@ -9,10 +16,11 @@ var CANCLE_TEXT = '取消';
 /**
  * @class Confirm
  * @param {string} template 
- * @description class Confirm 的构造函数
+ * @description 构造函数
  */
 function Confirm(template){
     this.name = 'ui-confirm';
+    this.$showNum = 0;
     this.$el = null;
 }
 
@@ -90,10 +98,13 @@ Confirm.prototype = {
         return this;
     },
     show:function () {
+        this.$showNum++;
         this.$el.style.display = 'block';
     },
     hidden:function () {
-        this.$el.style.display = 'none';
+        this.$showNum--;
+        if (this.$showNum === 0)
+            this.$el.style.display = 'none';
     }
 };
 
