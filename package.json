@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/simple-dialog.js",
-  "style":"dist/simple-dialog.css",
+  "style": "dist/simple-dialog.css",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config build/webpack.dev.js",
@@ -25,6 +25,7 @@
     "style-loader": "^0.20.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1",
-    "webpack-merge": "^4.1.1"
+    "webpack-merge": "^4.1.1",
+    "webpack-parallel-uglify-plugin": "^1.0.2"
   }
 }
