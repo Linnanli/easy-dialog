@@ -2,7 +2,7 @@
  * @Author: linnanli 
  * @Date: 2018-02-18 19:53:37 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-24 00:10:41
+ * @Last Modified time: 2018-02-24 00:12:27
  * @Dscription: 工具类 
 */
 
@@ -75,7 +75,6 @@ function inherit(SubClass, SuperClass){
 
 module.exports = {
     onload: onload,
-    getSingle: getSingle,
     getFncName: getFncName,
     addClass: addClass,
     inherit: inherit
