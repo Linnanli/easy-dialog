@@ -1,67 +1,7 @@
-@import '../../../styles/common/variable.scss';
-@import '../../../styles/common/mixin.scss';
-
-.#{$prefix}{
-    &alert-mask{
-        @include mask;
-    }
-    
-    &alert{
-        min-width: 278px;
-        text-align: left;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        border-radius: 5px;
-        background-color: #fff;
-        transform: translate(-50%,-53%);
-
-        &-head{
-            padding: 14px 20px;
-            border-bottom: 1px solid #e7e7e7;
-            font-size: 16px;
-            word-break: break-all;
-        }
-
-        &-body{
-            padding: 10px 20px 15px 20px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        &-footer{
-            text-align: right;
-            padding: 15px 20px 14px 20px;
-        }
-
-        &-but{
-            padding: 0 15px;
-            font-size: 12px;
-            height: 26px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        &-confirm{
-            border: 1px solid #4794ff;
-            background-color: #4794ff;
-            color: #fff;
-
-            &:hover{
-                background-color: #4087ea;
-            }
-        }
-
-        &-cancel{
-            border: 1px solid #ccc;
-            background-color: #fff;
-            color: #666;
-
-            &:hover{
-                background-color: #f0f0f0;
-            }
-        }
-
-        
-
-    }
-}
+/*
+ * @Author: linnanli 
+ * @Description: confirm的scss文件 
+ * @Date: 2018-02-23 17:38:24 
+ * @Last Modified by: linnanli
+ * @Last Modified time: 2018-02-23 17:38:49
+ */

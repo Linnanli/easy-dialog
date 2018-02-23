@@ -2,12 +2,13 @@
  * @Author: linnanli 
  * @Date: 2018-02-19 00:29:19 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-19 00:29:44
+ * @Last Modified time: 2018-02-23 18:48:44
  * @Dscription: Confirm js文件 
 */
 require('./index.scss');
 var tpl = require('./index.html');
 var util = require('util');
+var Alert = require('../common/alert.js');
 
 // 常量定义
 var CONFIRM_TEXT = '确定';
@@ -18,7 +19,9 @@ var CANCLE_TEXT = '取消';
  * @param {string} template 
  * @description 构造函数
  */
-function Confirm(template){
+function Confirm(){
+    //继承父类Alert方法
+    this.__proto__.__proto__ = new Alert();
     this.name = 'ui-confirm';
     this.$showNum = 0;
     this.$el = null;
@@ -88,31 +91,7 @@ Confirm.prototype = {
         $bindEven.call(this,params);
 
         this.show();
-    },
-    setTitle:function (title) {
-        this.head.innerText = title || '';
-        return this;
-    },
-    setMessage: function (message) {
-        this.body.innerText = message || '';
-        return this;
-    },
-    show:function () {
-        this.$showNum++;
-        this.$el.style.display = 'block';
-    },
-    hidden:function () {
-        this.$showNum--;
-        if (this.$showNum === 0)
-            this.$el.style.display = 'none';
     }
 };
 
-//实例化对象
-var confirm = new Confirm(tpl);
-
-module.exports = function (params){
-    util.onload(function(){
-        confirm.$init(params);
-    });
-};
+module.exports = Confirm;
