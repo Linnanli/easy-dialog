@@ -20,9 +20,10 @@ document.getElementById('confirm-but').addEventListener('click',function(){
 });
 
 document.getElementById('prompt-but').addEventListener('click',function(){
-    debugger
+    debugger    
     dialog.prompt({
         title:'prompt',
-        message:'请输入你的名字'
+        message:'请输入你的名字',
+        placeholder:'如:林楠力'
     });
 });

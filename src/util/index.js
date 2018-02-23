@@ -2,7 +2,7 @@
  * @Author: linnanli 
  * @Date: 2018-02-18 19:53:37 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-23 17:11:50
+ * @Last Modified time: 2018-02-24 00:10:41
  * @Dscription: 工具类 
 */
 
@@ -29,25 +29,6 @@ function onload(callback){
         });
     }
 }
-
-/**
- * @name getSingle
- * @description  创建单例对象的代理方法 ,使创建对象和单例管理职责被区分到两个不同的方法中
- */
-var getSingle = (function(){
-    var instances = {};
-
-    return function (constructor){
-        var name = getFncName(constructor);
-
-        if (instances[name] !== undefined){
-            return instances[name];
-        }else{
-            return instances[name] = new constructor();
-        }
-            
-    };
-})();
 
 /**
  * @name addClass
@@ -80,9 +61,22 @@ function hasClass(ele,className) {
     return clasArr.indexOf(className) === -1?false:true;
 }
 
+/**
+ * @name inherit
+ * @description 继承父类的原型对象和属性
+ * @param {any} SubClass 子类的构造函数
+ * @param {any} SuperClass 父类的构造函数
+ */
+function inherit(SubClass, SuperClass){
+    SubClass.prototype = new SuperClass();
+    SubClass.prototype.constructor = SubClass;
+    return SubClass;
+}
+
 module.exports = {
     onload: onload,
     getSingle: getSingle,
     getFncName: getFncName,
-    addClass: addClass
+    addClass: addClass,
+    inherit: inherit
 };

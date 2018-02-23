@@ -1,0 +1,20 @@
+@import '../../../styles/common/variable.scss';
+
+.#{$prefix} {
+    &prompt{
+        width: 300px;
+        &-text{
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        &-input{
+            font-size: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 6px;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+    }
+}
