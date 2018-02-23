@@ -2,7 +2,7 @@
  * @Author: linnanli 
  * @Date: 2018-02-19 00:29:19 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-24 00:09:27
+ * @Last Modified time: 2018-02-24 00:22:35
  * @Dscription: Confirm js文件 
 */
 require('./index.scss');
@@ -20,14 +20,14 @@ var CANCLE_TEXT = '取消';
  * @description 构造函数
  */
 
-var Confirm = util.inherit(function Confirm() {
+var Confirm = util.constructor(function () {
     Alert.call(this);
     this.name = 'ui-confirm';
     this.$showNum = 0;
     this.$el = null;
-}, Alert);
+});
 
-
+Confirm.extend(Alert);
 /**
  * @private
  * @param {object} params 

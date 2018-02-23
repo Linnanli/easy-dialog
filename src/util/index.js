@@ -2,7 +2,7 @@
  * @Author: linnanli 
  * @Date: 2018-02-18 19:53:37 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-24 00:12:27
+ * @Last Modified time: 2018-02-24 00:21:57
  * @Dscription: 工具类 
 */
 
@@ -67,9 +67,13 @@ function hasClass(ele,className) {
  * @param {any} SubClass 子类的构造函数
  * @param {any} SuperClass 父类的构造函数
  */
-function inherit(SubClass, SuperClass){
-    SubClass.prototype = new SuperClass();
-    SubClass.prototype.constructor = SubClass;
+function constructor(SubClass){
+    
+    SubClass.extend = function (SuperClass){
+        SubClass.prototype = new SuperClass();
+        SubClass.prototype.constructor = SubClass;
+        return SubClass;
+    }
     return SubClass;
 }
 
@@ -77,5 +81,5 @@ module.exports = {
     onload: onload,
     getFncName: getFncName,
     addClass: addClass,
-    inherit: inherit
+    constructor: constructor
 };

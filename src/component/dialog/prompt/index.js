@@ -4,11 +4,13 @@ var tpl = require('./index.html');
 var util = require('util');
 
 
-var Prompt = util.inherit(function Prompt(params) {
+var Prompt = util.constructor(function () {
     Alert.call(this);
     this.name = 'ui-prompt';
     this.$el = null;
-}, Alert);
+});
+
+Prompt.extend(Alert);
 
 /**
  * @name $bindEvent
