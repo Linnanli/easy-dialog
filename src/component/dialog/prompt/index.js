@@ -3,13 +3,15 @@ var Alert = require('../alert');
 var tpl = require('./index.html');
 var util = require('util');
 
+var type = util.type;
 
+//定义一个构造函数 Prompt
 var Prompt = util.constructor(function () {
     Alert.call(this);
     this.name = 'ui-prompt';
     this.$el = null;
 });
-
+// Prompt继承自Alert
 Prompt.extend(Alert);
 
 /**
@@ -22,7 +24,8 @@ function $findEle(){
     this.body = this.$el.querySelector('.ui-alert-body');
     this.message = this.$el.querySelector('.ui-prompt-text');
     this.inputEle = this.$el.querySelector('.ui-prompt-input');
-
+    this.confirmBut = this.$el.querySelector('.ui-alert-confirm');
+    this.cancelBut = this.$el.querySelector('.ui-alert-cancel');
 }
 
 /**
@@ -30,12 +33,27 @@ function $findEle(){
  * @private
  * @description 绑定事件
  */
-function $bindEvent(){
+function $bindEvent(options){
+    var _this = this;
+    
+    this.confirmBut.onclick = function(){
+        // debugger
+        if (type.isFunction(options.confirm)){
+            if (options.confirm.call(_this, _this.inputEle.value) === false) return;
+        }
+        _this.hidden();
+    }
 
+    this.cancelBut.onclick = function(){
+        if(type.isFunction(options.cancel)){
+            if (options.cancel.call(_this, _this.inputEle.value) === false) return;
+        }
+        _this.hidden();
+    }
 }
 
 Prompt.prototype.$init = function(options) {
-    if (typeof options !== 'object') options = {};
+    if (!type.isObject(options)) options = {};
 
     if (this.$el === null) {
         var div = document.createElement('div');
@@ -50,7 +68,11 @@ Prompt.prototype.$init = function(options) {
     this.setTitle(options.title)
         .setMessage(options.message)
         .setPlaceholder(options.placeholder);
-
+    //清空输入框的值
+    this.inputEle.value = '';
+    //绑定事件
+    $bindEvent.call(this, options);
+    this.show();
     this.inputEle.focus();
 }
 

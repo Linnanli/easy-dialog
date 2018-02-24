@@ -24,6 +24,9 @@ document.getElementById('prompt-but').addEventListener('click',function(){
     dialog.prompt({
         title:'prompt',
         message:'请输入你的名字',
-        placeholder:'如:林楠力'
+        placeholder:'如:林楠力',
+        confirm:function (value) {
+            console.log(value);
+        }
     });
 });

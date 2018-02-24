@@ -2,7 +2,7 @@
  * @Author: linnanli 
  * @Date: 2018-02-19 00:29:19 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-24 00:22:35
+ * @Last Modified time: 2018-02-24 16:04:44
  * @Dscription: Confirm js文件 
 */
 require('./index.scss');

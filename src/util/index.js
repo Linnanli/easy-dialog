@@ -2,9 +2,41 @@
  * @Author: linnanli 
  * @Date: 2018-02-18 19:53:37 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-24 00:21:57
+ * @Last Modified time: 2018-02-24 16:44:45
  * @Dscription: 工具类 
 */
+
+var type = {
+    getTypeStr:function(obj,typeStr){
+        return this.toString.call(obj) === typeStr;
+    },
+    isArray:function(obj){
+        return this.getTypeStr(obj, '[object Array]');
+    },
+    isFunction: function (obj) {
+        return this.getTypeStr(obj, '[object Function]');
+    },
+    isString: function (obj) {
+        return this.getTypeStr(obj, '[object String]');
+    },
+    isNumber: function (obj) {
+        return this.getTypeStr(obj, '[object Undefined]');
+    },
+    isNull: function (obj) {
+        return this.getTypeStr(obj, '[object Null]');
+    },
+    isUndefined: function (obj) {
+        return this.getTypeStr(obj, '[object Undefined]');
+    },
+    isRegExp:function(){
+        return this.getTypeStr(obj, '[object RegExp]');
+    },
+    isObject: function (obj){
+        return this.getTypeStr(obj, '[object Object]');
+    },
+    isNaN:window.isNaN
+};
+
 
 /**
  * @name getFncName
@@ -68,7 +100,7 @@ function hasClass(ele,className) {
  * @param {any} SuperClass 父类的构造函数
  */
 function constructor(SubClass){
-    
+
     SubClass.extend = function (SuperClass){
         SubClass.prototype = new SuperClass();
         SubClass.prototype.constructor = SubClass;
@@ -81,5 +113,6 @@ module.exports = {
     onload: onload,
     getFncName: getFncName,
     addClass: addClass,
-    constructor: constructor
+    constructor: constructor,
+    type: type
 };
