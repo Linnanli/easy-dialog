@@ -3,12 +3,12 @@
  * @Description: dialog 的公用样式 
  * @Date: 2018-02-23 17:38:32 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-25 17:11:51
+ * @Last Modified time: 2018-02-25 23:24:59
  */
 
-@import '../../../styles/common/variable.scss';
-@import '../../../styles/common/mixin.scss';
-
+// @import '../../../styles/common/variable.scss';
+// @import '../../../styles/common/mixin.scss';
+@import "../../../styles/index.scss";
 
 /* ====================== alert style =============================*/
 
@@ -68,6 +68,7 @@
             height: 26px;
             cursor: pointer;
             border-radius: 4px;
+            outline: none;
         }
         &-confirm{
             border: 1px solid #4794ff;

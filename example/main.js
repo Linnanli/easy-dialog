@@ -52,6 +52,6 @@ promptBut.addEventListener('click',function(){
 
 toastBut.addEventListener('click',function(){
     dialog.toast({
-        // message:"删除成功！"
+        message:"删除成功！"
     });
 });

@@ -2,10 +2,9 @@
  * @Author: linnanli 
  * @Date: 2018-02-19 00:29:19 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-25 18:34:29
+ * @Last Modified time: 2018-02-25 23:25:17
  * @Dscription: Confirm js文件 
 */
-require('./index.scss');
 var tpl = require('./index.html');
 var util = require('util');
 var Alert = require('../alert');

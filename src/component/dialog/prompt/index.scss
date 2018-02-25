@@ -1,4 +1,4 @@
-@import '../../../styles/common/variable.scss';
+@import "../../../styles/index.scss";
 
 .#{$prefix} {
     &-prompt{
@@ -15,9 +15,15 @@
             border-radius: 2px;
             border: 1px solid #ccc;
             background-color: #fff;
+            outline: none;
+
             //IE 10上input输入框的X按钮
             &::-ms-clear{
                 display: none;
+            }
+
+            &:focus{
+                box-shadow: 0px 0px 2px .5px #38f;
             }
         }
     }

@@ -1,44 +1,41 @@
 var path = require('path');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
-var HTMLWebpackPlugin = require('html-webpack-plugin');
 var ExtrctTextPlugin = require('extract-text-webpack-plugin');
-var cleanWebpackPlugin = require('clean-webpack-plugin');
 var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+var HTMLWebpackPlugin = require('html-webpack-plugin');
 
 var common = require('./webpack.common');
 var styleConifg = require('./style.config');
 
-function resolve(pathstr) {
-    return path.resolve(__dirname, pathstr);
-}
-
-module.exports = merge(common, {
-    entry: {
-        'simple-dialog': resolve('../src/index.js')
+module.exports = merge(common,{
+    entry:{
+        app:path.resolve(__dirname,'../example/main.js')
     },
-    output: {
-        path: resolve('../dist'),
-        filename: '[name].js',
-        library: 'dialog',
-        libraryTarget: 'umd'
+    output:{
+        path:path.resolve(__dirname,'../docs'),
+        filename:'js/[name].[chunkhash:5].js'
     },
-    module: {
+    devtool:'#source-map',
+    module:{
         rules: styleConifg(true).styleLoader
     },
-    plugins: [
+    plugins:[
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
-        new webpack.optimize.ModuleConcatenationPlugin(),
-        new cleanWebpackPlugin(['dist']),
-        new ExtrctTextPlugin({
-            filename: 'simple-dialog.css'
+        new HTMLWebpackPlugin({
+            template: path.resolve(__dirname, '../index.html'),
+            filename: 'index.html'
         }),
+        new ExtrctTextPlugin({
+            filename: 'css/[name].[contenthash:5].css'
+        }),
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new ParallelUglifyPlugin({
-            cacheDir: '.uglify-cache',
+            cacheDir: '.example-uglify-cache',
             sourceMap: true,
             output: {
                 beautify: true,
