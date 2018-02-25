@@ -1,7 +1,20 @@
 require('./styles/index.scss');
 var dialog = require('component/dialog');
 
-document.getElementById('confirm-but').addEventListener('click',function(){
+var root = document.getElementById('app-root');
+var confirmBut = document.createElement('button');
+var promptBut = document.createElement('button');
+var toastBut = document.createElement('button');
+
+confirmBut.innerHTML = '弹出confirm';
+promptBut.innerHTML = '弹出prompt';
+toastBut.innerHTML = '弹出toast';
+
+root.appendChild(confirmBut);
+root.appendChild(promptBut);
+root.appendChild(toastBut);
+
+confirmBut.addEventListener('click',function(){
     dialog.confirm({
         title: '消息',
         mask: 'white',
@@ -19,7 +32,7 @@ document.getElementById('confirm-but').addEventListener('click',function(){
     });
 });
 
-document.getElementById('prompt-but').addEventListener('click',function(){
+promptBut.addEventListener('click',function(){
     // debugger    
     dialog.prompt({
         title:'prompt',
@@ -27,6 +40,18 @@ document.getElementById('prompt-but').addEventListener('click',function(){
         placeholder:'如:林楠力',
         confirm:function (value) {
             console.log(value);
+            if (value !== ''){
+                dialog.toast({
+                    message: value,
+                    timeout: 3000
+                });
+            }
         }
+    });
+});
+
+toastBut.addEventListener('click',function(){
+    dialog.toast({
+        // message:"删除成功！"
     });
 });

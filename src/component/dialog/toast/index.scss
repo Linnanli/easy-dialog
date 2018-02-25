@@ -1,0 +1,40 @@
+/*
+ * @Author: linnanli 
+ * @Description: toast 样式文件 
+ * @Date: 2018-02-25 16:55:08 
+ * @Last Modified by: linnanli
+ * @Last Modified time: 2018-02-25 17:41:05
+ */
+@import "../../../styles/common/variable.scss";
+@import "../../../styles/common/mixin.scss";
+
+.#{$prefix}{
+    
+    &-toast-mask{
+        @include mask;
+
+        &.black{
+            background-color: $mask-color-black;
+        }
+        &.white{
+            background-color: $mask-color-white;
+        }
+    }
+
+    &-toast{
+        min-width: 140px;
+        padding: 0 20px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,50%);
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        line-height: 26px;
+        height: 26px;
+        background-color: rgba(0,0,0, .6);
+        border-radius: 3px;
+    }
+}
+

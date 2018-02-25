@@ -1,7 +1,7 @@
 @import '../../../styles/common/variable.scss';
 
 .#{$prefix} {
-    &prompt{
+    &-prompt{
         width: 300px;
         &-text{
             font-size: 12px;
@@ -15,6 +15,10 @@
             border-radius: 2px;
             border: 1px solid #ccc;
             background-color: #fff;
+            //IE 10上input输入框的X按钮
+            &::-ms-clear{
+                display: none;
+            }
         }
     }
 }

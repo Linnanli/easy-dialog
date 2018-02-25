@@ -2,7 +2,7 @@
  * @Author: linnanli 
  * @Date: 2018-02-19 00:29:19 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-24 16:04:44
+ * @Last Modified time: 2018-02-25 18:34:29
  * @Dscription: Confirm js文件 
 */
 require('./index.scss');
@@ -10,9 +10,7 @@ var tpl = require('./index.html');
 var util = require('util');
 var Alert = require('../alert');
 
-// 常量定义
-var CONFIRM_TEXT = '确定';
-var CANCLE_TEXT = '取消';
+var type = util.type;
 
 /**
  * @class Confirm
@@ -39,9 +37,6 @@ function $findEle(params) {
     this.body = this.$el.querySelector('.ui-alert-body');
     this.cancelBut = this.$el.querySelector('.ui-alert-cancel');
     this.confirmBut = this.$el.querySelector('.ui-alert-confirm');
-    //设置各个DOM初始化属性
-    this.cancelBut.innerText = CANCLE_TEXT;
-    this.confirmBut.innerText = CONFIRM_TEXT;
 }
 
 /**
@@ -49,19 +44,19 @@ function $findEle(params) {
  * @param {object} params
  * @description 为DOM绑定新的事件,清除上一次留存的事件
  */
-function $bindEven(params){ 
+function $bindEven(params) {
     var _this = this;
     //绑定各个DOM元素的事件
     this.confirmBut.onclick = function () {
-        if (typeof params.confirm === 'function')
-            params.confirm.call(_this);
-
+        if (type.isFunction(params.confirm)) {
+            if (params.confirm.call(_this) === false) return;
+        }
         _this.hidden();
     }
     this.cancelBut.onclick = function () {
-        if (typeof params.cancel === 'function')
-            params.cancel.call(_this);
-
+        if (type.isFunction(params.cancel)) {
+            if (params.cancel.call(_this) === false) return;
+        }
         _this.hidden();
     }
 }
@@ -72,16 +67,19 @@ function $bindEven(params){
  */
 Confirm.prototype.$init = function (params) {
     if (typeof params !== 'object') params = {};
-
+ 
     if (this.$el === null) {
         var div = document.createElement('div');
         div.innerHTML = tpl;
         this.$el = div.children[0];
         this.$el.id = this.name;
-        document.body.appendChild(this.$el);
+        this.hidden();
         //绑定DOM事件
         $findEle.call(this, params);
+        document.body.appendChild(this.$el);
     }
+  
+    if (!type.isString(params.message) || params.message === '') return;
     //设置title和message
     this.setTitle(params.title)
         .setMessage(params.message);

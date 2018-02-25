@@ -3,7 +3,7 @@
  * @Description: alert 类,作为confirm和prompt的父类 
  * @Date: 2018-02-23 18:00:53 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-23 18:33:52
+ * @Last Modified time: 2018-02-25 18:34:12
  */
 
  function Alert(){
@@ -28,7 +28,8 @@ Alert.prototype = {
         this.$el.style.display = 'block';
     },
     hidden: function () {
-        this.$showNum--;
+        if(this.$showNum>0)
+            this.$showNum--;
         if (this.$showNum === 0)
             this.$el.style.display = 'none';
     }

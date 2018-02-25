@@ -3,7 +3,7 @@
  * @Description: dialog 的公用样式 
  * @Date: 2018-02-23 17:38:32 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-23 17:56:59
+ * @Last Modified time: 2018-02-25 17:11:51
  */
 
 @import '../../../styles/common/variable.scss';
@@ -13,28 +13,28 @@
 /* ====================== alert style =============================*/
 
 .#{$prefix}{
-    &alert-mask{
+    &-alert-mask{
         @include mask;
 
         &.black{
-            background-color: rgba(#000,0.5);
+            background-color: $mask-color-black;
             border: none;
         }
 
         &.white{
-            background-color: rgba(#fff,0.5);
+            background-color: $mask-color-white;
         }
     }
     
-    &alert-mask &alert{
+    &alert-mask &-alert{
         border: 1px solid #eee;
     }
     //黑色遮罩下面的弹框隐藏border
-    &alert-mask.black &alert{
+    &alert-mask.black &-alert{
         border: none;
     }
     
-    &alert{
+    &-alert{
         min-width: 278px;
         text-align: left;
         position: absolute;
@@ -52,14 +52,14 @@
         }
 
         &-body{
-            padding: 10px 20px 15px 20px;
+            padding: 10px 20px 16px 20px;
             font-size: 14px;
             color: #666;
         }
 
         &-footer{
             text-align: right;
-            padding: 15px 20px 14px 20px;
+            padding: 16px 20px 14px 20px;
         }
 
         &-but{

@@ -2,7 +2,7 @@
  * @Author: linnanli 
  * @Date: 2018-02-18 19:53:37 
  * @Last Modified by: linnanli
- * @Last Modified time: 2018-02-24 16:44:45
+ * @Last Modified time: 2018-02-25 10:28:33
  * @Dscription: 工具类 
 */
 
@@ -56,7 +56,7 @@ function onload(callback){
     if (document.readyState === 'complete'){
             callback && callback();
     }else{
-        window.addEventListener('load',function(){
+        window.addEventListener('DOMContentLoaded',function(){
             callback && callback();
         });
     }

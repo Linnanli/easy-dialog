@@ -2,9 +2,12 @@ require('./alert/index.scss');
 var util = require('util');
 var Confirm = require('./confirm');
 var Prompt = require('./prompt');
+var Toast = require('./toast');
+
+var onload = util.onload;
 
 //兼容IE中按回车键,会触发页面第一个按钮的BUG
-util.onload(function(){
+onload(function(){
     if( navigator.appVersion.toUpperCase().indexOf('MSIE') === -1) return;
     var box = document.createElement('div'),
         but = document.createElement('button');
@@ -17,16 +20,22 @@ util.onload(function(){
 
 var dialog = {
     confirm: function (options){
-        util.onload(function (){
+        onload(function (){
             //使用代理获取Confirm的单例对象
             var confirm = Confirm.getSingle();
             confirm.$init(options);
         });
     },
     prompt: function (options){
-        util.onload(function(){
+        onload(function(){
             var prompt = Prompt.getSingle();
             prompt.$init(options);
+        });
+    },
+    toast:function(options){
+        onload(function(){
+            var toast = Toast.getSingle();
+            toast.$init(options);
         });
     }
 };

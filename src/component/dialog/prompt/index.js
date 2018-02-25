@@ -60,10 +60,12 @@ Prompt.prototype.$init = function(options) {
         div.innerHTML = tpl;
         this.$el = div.children[0];
         this.$el.id = this.name;
-        document.body.appendChild(this.$el);
+        this.hidden();
         //查找DOM
         $findEle.call(this);
+        document.body.appendChild(this.$el);
     }
+    if (!type.isString(options.message) || options.message === '') return;
 
     this.setTitle(options.title)
         .setMessage(options.message)
@@ -77,7 +79,7 @@ Prompt.prototype.$init = function(options) {
 }
 
 Prompt.prototype.setMessage = function (message) {
-    this.message.innerHTML = message || '';
+    this.message.innerHTML = message;
     return this;
 }
 
