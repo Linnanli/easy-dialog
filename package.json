@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config build/webpack.dev.js",
-    "build:example":"webpack --config build/webpack.example.build.js",
+    "build:example": "webpack --config build/webpack.example.build.js",
     "build:component": "webpack --config build/webpack.component.build.js"
   },
   "author": "linnanli",
