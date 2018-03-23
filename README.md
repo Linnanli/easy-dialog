@@ -1,4 +1,4 @@
-# simple-dialog
+# easy-dialog
 
 一个简单的提示框集合类,支持IE9及以上,压缩后代码 2.4kb左右
 
